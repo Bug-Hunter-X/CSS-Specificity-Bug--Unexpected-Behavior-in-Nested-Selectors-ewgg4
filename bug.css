@@ -1,0 +1,21 @@
+The following CSS code snippet demonstrates an uncommon error related to the specificity of CSS selectors:
+
+```css
+.container {
+  width: 500px;
+}
+
+.container .item {
+  width: 200px; /* This rule is overridden */
+}
+
+.container .item.special {
+  width: 300px; /* This rule is intended to override the previous one*/
+}
+
+.container .item.special.extra-special {
+  width: 400px; /* This should override .container .item.special*/
+}
+```
+
+In the above code, each `.item` element within the `.container` with the `special` class should ideally have a width of 300px, and those with an additional class `extra-special` should ideally have a width of 400px.  However, depending on browser and CSS implementation details, unexpected behavior may occur.  The unexpected behavior can arise from the fact that while the specificity appears correct, there might be some edge cases or interactions with inheritance or other CSS rules not explicitly shown that unintentionally override these selectors.
